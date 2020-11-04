@@ -1,3 +1,5 @@
+local api = vim.api
+
 local M = {}
 
 -- the zoom state
