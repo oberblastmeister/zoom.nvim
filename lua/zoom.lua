@@ -29,20 +29,19 @@ function M.zoom()
   if tabs[current_tabnr] == nil then
     local previous_winid = vim.fn.win_getid()
 
-    local bufname = api.nvim_buf_get_name(0)
-    if bufname == nil or bufname == "" then
-      vim.cmd [[tabnew]]
-    else
-      vim.cmd('tabedit ' .. bufname)
-    end
+    -- use tab split to retain cursor pos on zoom
+    vim.cmd('tab split')
 
     local new_tabnr = vim.fn.win_getid()
 
     saved_winids[new_tabnr] = previous_winid
   else
+    -- restore cursor on un-zoom
+    local pos = vim.fn.getcurpos()
     local goto_tabnr = tabs[current_tabnr]
-    vim.cmd [[tabclose]]
+    vim.cmd('tabclose')
     vim.cmd('tabn ' .. goto_tabnr)
+    vim.fn.setpos('.', pos)
     saved_winids[vim.fn.win_getid()] = nil
   end
 end
