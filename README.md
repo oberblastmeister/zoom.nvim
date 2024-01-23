@@ -27,3 +27,12 @@ use {
   config = function() require('zoom').setup() end
 }
 ```
+
+### lazy.nvim
+
+```lua
+{
+  'oberblastmeister/zoom.nvim',
+  config = true
+}
+```
