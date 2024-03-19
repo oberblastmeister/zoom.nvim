@@ -12,10 +12,27 @@
 
 ### vim-plug
 
-`Plug 'oberblastmeister/zoom.nvim'`
+```vim
+Plug 'oberblastmeister/zoom.nvim'
+
+" After plug#end()
+lua require'zoom'.setup()
+```
 
 ### packer.nvim
 
 ```lua
-use 'oberblastmeister/zoom.nvim'
+use {
+  'oberblastmeister/zoom.nvim',
+  config = function() require('zoom').setup() end
+}
+```
+
+### lazy.nvim
+
+```lua
+{
+  'oberblastmeister/zoom.nvim',
+  config = true
+}
 ```
